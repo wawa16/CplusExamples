@@ -2,7 +2,7 @@
 #include <cstring>
 using namespace std; 
 
-void printStruct(struct Piano *piano, int pianos);
+void printStruct(struct Piano *piano, int& pianos);
 
 typedef struct Piano{
     string piano_type;
@@ -31,7 +31,7 @@ int main(){
     }
     
 }
-    void printStruct(struct Piano *piano, int pianos){
+    void printStruct(struct Piano *piano, int &pianos){
         cout << "Details of piano # " << pianos << endl;
         cout << piano->piano_type << endl;
         cout << piano->mechanism << endl;
