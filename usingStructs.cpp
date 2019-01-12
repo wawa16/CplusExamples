@@ -27,12 +27,12 @@ int main(){
     }
     
     for(int i=0; i<pianos; i++){
-        printStruct(&piano[i], (i+1));
+        printStruct(&piano[i], i);
     }
     
 }
     void printStruct(struct Piano *piano, int &pianos){
-        cout << "Details of piano # " << pianos << endl;
+        cout << "Details of piano # " << (pianos+1) << endl;
         cout << piano->piano_type << endl;
         cout << piano->mechanism << endl;
         cout << piano->age << endl;
