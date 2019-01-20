@@ -12,6 +12,8 @@ struct node {
   node* right;
 };
 
+node* root;
+
 node* createLeaf(int key_){
     node* n = new node;
     n->key = key_;
@@ -44,14 +46,45 @@ void addLeafPriv(int key, node* Ptr){
     }
 }
 
+void printinOrderpriv(node* Ptr){
+    if(root!=NULL){
+        if(Ptr->left != NULL){
+            printinOrderpriv(Ptr->left);
+        }
+        cout << Ptr->key << " ";
+        if(Ptr->right != NULL){
+            printinOrderpriv(Ptr->right);
+        }
+    } else {
+        cout << "No nodes in tree\n";
+    }
+}
+
+void printinOrder(){
+    printinOrderpriv(root);
+}
+
 void addLeaf(int key){
     addLeafPriv(key, root);
 }
 
 
 int main() {
-    node* root;
+    //node* root;
     root = NULL;
+    int Treekeys[16] = {50, 76, 21, 4, 32, 64, 15, 52, 14, 100, 83, 2, 3, 70, 87, 80}
+    
+    cout << "tree in order\nBefore adding elements\n";
+    printinOrder();
+    
+    for(int i = 0; i < 16; i++){
+        addLeaf(Treekeys[i]);
+    }
+    cout << "tree in order\nAfter adding elements\n";
+    printinOrder();
+
     
     return 0;
 }
+
+
