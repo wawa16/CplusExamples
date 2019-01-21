@@ -114,20 +114,20 @@ void buildTree(string input[], int &size){
              node *ptr = root;
              while(count < input[i].length()){
                 if (input[i][count] == 'L') {
-                        if(Lcount==1){
+                        if(Lcount==1 || Rcount==1){
                             arr_[i] = addLeftChild(arr_[i]);
                         } else {
                             arr_[i] = addLeftChild(arr_[count]);                 //temp pointer
                         }
                     
-                        Lcount += 1;
+                        Lcount = 1;
                 } else if (input[i][count] == 'R') {
                         if(Rcount==1 || Lcount==1){
                             arr_[i] = addRightChild(arr_[i]);
                         } else {
                             arr_[i] = addRightChild(arr_[count]);                 //temp pointer
                         }
-                        Rcount += 1;
+                        Rcount = 1;
                 }
                 else {
                   key_ = input[i][count] - '0';
@@ -138,11 +138,8 @@ void buildTree(string input[], int &size){
              }
              
              key_arr[i] = key_;
-             //arr_[i]->key = key_;
-              //arr_[i] = new node(key_[i]);   
-             //cout << key_arr[i] << " ";
          }
-         
+
      }
      for(int i=1; i<size; i++){
          arr_[i]->key = key_arr[i];   
@@ -194,9 +191,3 @@ int main() {
     
     return 0;
 }
-
-
-
-
-
-
