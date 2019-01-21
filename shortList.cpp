@@ -21,15 +21,32 @@ vector<string> shortList(string names[], int &size){
      std::vector<char> alphabets;   //vector stores alphabets from names
      std::vector<string> output;   //vector contains final sorted output
      
+     
        for(int i=0; i<size; i++){
        int count = 0;
        int state = 0;
+       
        while(count < names[i].length()){
-           if(std::find(alphabets.begin(), alphabets.end(), names[i][count]) == alphabets.end()) {
+          if(std::find(alphabets.begin(), alphabets.end(), names[i][count]) == alphabets.end()) {
               alphabets.push_back(names[i][count]);
               state++;
             }
-           count++;
+            
+    ///For same result but without std::find(algorithm lib):
+    ///Uncomment the code below and comment the if() func above
+        
+        // int flag = 0;
+        //     for(int j=0; j<alphabets.size(); j++){
+        //         if (names[i][count] != alphabets[j]){
+        //           flag++;
+        //         }
+        //     }
+        //     if(flag == alphabets.size()){
+        //         alphabets.push_back(names[i][count]);
+        //         state++;
+        //     }
+
+            count++;
        }
        if(state != 0){
            output.push_back(names[i]);
@@ -44,3 +61,5 @@ void printOutput(const vector<string> &output){
         cout << output[i] << " ";
     }
 }
+
+
