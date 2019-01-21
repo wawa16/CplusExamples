@@ -37,3 +37,10 @@ vector<string> shortList(string names[], int &size){
     }
     return output;
 }
+
+void printOutput(const vector<string> &output){
+    cout << "short-listed array of names:" << endl;
+    for(int i=0; i<output.size(); i++){
+        cout << output[i] << " ";
+    }
+}
