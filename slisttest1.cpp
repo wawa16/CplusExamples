@@ -19,8 +19,8 @@ vector<Sorted> shortList(string[], int &size); //sorting function
 
 int main()
 {
-    //string names[9] = {"a","b", "ab", "bab", "babel", "bebe", "bf", "c", "beb"}; //Input Array of names
-   string names[5] = {"doll","dolla","boo", "dollarboy", "bay"}; //Input Array of names
+    //string names[8] = {"a","b", "ab", "bab", "bebe", "bf", "c", "beb"}; //Input Array of names
+   string names[4] = {"babd", "a","b","abcd"}; //Input Array of names
    
     int size = sizeof(names)/sizeof(names[0]);
     Sorted names_data[size];
@@ -61,6 +61,7 @@ int main()
                   int zi = names_data[i].word_size;
                   names_data[i].word_size = names_data[i+1].word_size;
                   names_data[i+1].word_size = zi;
+                  names_data[i].alphas.clear();
                   std::vector<char> zv = names_data[i].alphas;
                   names_data[i].alphas = names_data[i+1].alphas;
                   names_data[i+1].alphas = zv;
@@ -68,7 +69,34 @@ int main()
            count++;
             }
        } else if(names_data[i+1].word_size <= names_data[i].word_size) {
-            if(names_data[i].name != names_data[0].name){
+           if(names_data[i].word_size == names_data[i+1].word_size){
+               if(names_data[i].alphas.size() < names_data[i+1].alphas.size()){
+                      string z = names_data[i].name;
+                      names_data[i].name = names_data[i+1].name;
+                      names_data[i+1].name = z;
+                      int zi = names_data[i].word_size;
+                      names_data[i].word_size = names_data[i+1].word_size;
+                      names_data[i+1].word_size = zi;
+                      names_data[i].alphas.clear();
+                      std::vector<char> zv = names_data[i].alphas;
+                      names_data[i].alphas = names_data[i+1].alphas;
+                      names_data[i+1].alphas = zv;
+               }
+          if(names_data[i].word_size == names_data[size-1].word_size){
+               if(names_data[i].alphas.size() < names_data[size-1].alphas.size()){
+                      string z = names_data[i].name;
+                      names_data[i].name = names_data[size-1].name;
+                      names_data[size-1].name = z;
+                      int zi = names_data[i].word_size;
+                      names_data[i].word_size = names_data[size-1].word_size;
+                      names_data[size-1].word_size = zi;
+                      names_data[size].alphas.clear();
+                      std::vector<char> zv = names_data[size].alphas;
+                      names_data[i].alphas = names_data[size-1].alphas;
+                      names_data[size-1].alphas = zv;
+               }
+           }
+           if(names_data[i].name != names_data[0].name){
                 
                 while(count < names_data[i].name.length()){
                      if(std::find(names_data[i-1].alphas.begin(), names_data[i-1].alphas.end(), names_data[i].name[count]) == names_data[i-1].alphas.end()) {
@@ -83,14 +111,14 @@ int main()
                       int zi = names_data[i].word_size;
                       names_data[i].word_size = names_data[i+1].word_size;
                       names_data[i+1].word_size = zi;
+                      names_data[i].alphas.clear();
                       std::vector<char> zv = names_data[i].alphas;
                       names_data[i].alphas = names_data[i+1].alphas;
                       names_data[i+1].alphas = zv;
                  }
                  count++;
                 }        
-            }
-            //cout << "eq or less" << " " << endl; 
+           }
        }
      }   
    }
